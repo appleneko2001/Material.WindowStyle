@@ -9,6 +9,7 @@
         <PackageVersion>0.10.0</PackageVersion>
         <Authors>github@appleneko2001</Authors>
         <Description>Provides a beautiful modern window design for Avalonia Applications with Material.Avalonia toolkit.</Description>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
