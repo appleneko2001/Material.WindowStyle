@@ -1,0 +1,33 @@
+name: Build and publish nightly package after any push commits
+
+on:
+  push:
+    branches: [ development-branch ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+    - name: Pack
+      run: dotnet pack --configuration Release /p:PatchNumber=$GITHUB_RUN_NUMBER-nightly
+    - name: Move package to artifacts
+      run: |
+        mkdir artifacts
+        find . -name \*.nupkg -exec mv {} artifacts/ \;
+    - name: Publish to NuGet
+      run: dotnet nuget push "artifacts/Material.WindowStyle.*.nupkg" --api-key ${{secrets.NUGET_KEY}} --source https://api.nuget.org/v3/index.json --skip-duplicate
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: artifacts
+        path: artifacts/
+    
