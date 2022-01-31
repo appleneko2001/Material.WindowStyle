@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StreamGeometry x:Key="MinimizeIconData">M20,20H4V16H20</StreamGeometry>
+    <StreamGeometry x:Key="MaximizeIconData">M4,4H20V20H4V4M6,8V18H18V8H6Z</StreamGeometry>
+    <StreamGeometry x:Key="RestoreIconData">M4,8H8V4H20V16H16V20H4V8M16,8V14H18V6H10V8H16M6,12V18H14V12H6Z</StreamGeometry>
+    <StreamGeometry x:Key="CloseIconData">M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z</StreamGeometry>
+    <StreamGeometry x:Key="FullscreenIconData">M5,5H10V7H7V10H5V5M14,5H19V10H17V7H14V5M17,14H19V19H14V17H17V14M10,17V19H5V14H7V17H10Z</StreamGeometry>
+    <StreamGeometry x:Key="FullscreenExitIconData">M14,14H19V16H16V19H14V14M5,14H10V19H8V16H5V14M8,5H10V10H5V8H8V5M19,8V10H14V5H16V8H19Z</StreamGeometry>
+</ResourceDictionary>

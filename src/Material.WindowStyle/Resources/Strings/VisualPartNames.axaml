@@ -1,0 +1,7 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:system="clr-namespace:System;assembly=netstandard">
+    <system:String x:Key="RootPanel">PART_RootPanel</system:String>
+    <system:String x:Key="BorderFrame">PART_BorderFrame</system:String>
+    <system:String x:Key="ContentPresenter">PART_ContentPresenter</system:String>
+</ResourceDictionary>

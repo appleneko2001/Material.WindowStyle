@@ -1,0 +1,83 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:chrome="clr-namespace:Material.WindowStyle.Chrome">
+    <!-- ReSharper disable InconsistentNaming -->
+    <Style Selector="chrome|MaterialTitleBar">
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+        
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="ClipToBounds" Value="False"/>
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="ButtonsAlign" Value="Right"/>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel HorizontalAlignment="{TemplateBinding HorizontalAlignment}" 
+                       VerticalAlignment="Stretch">
+                    
+                    <!-- The title bar will shown when cursor trigger upper zone (below one) -->
+                    <Panel Name="PART_FullScreenMouseTracker"
+                           VerticalAlignment="Top"
+                           Height="1"/>
+                    
+                    <!-- Inner title bar content -->
+                    
+                    <Border Name="PART_AppTitleBorder"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Panel Name="PART_Container">
+                            <Panel Name="PART_TitleContainer"
+                                   Background="{TemplateBinding Background}">
+                                <TextBlock Text="{TemplateBinding Title}"
+                                           VerticalAlignment="Center"
+                                           Margin="8,0"/>
+                                <Border Name="PART_WindowDragZone"
+                                        Background="Transparent"/>
+                            </Panel>
+                        
+                            <chrome:MaterialTitleBarButtons Name="PART_CaptionButtons"
+                                                            VerticalAlignment="Top"
+                                                            Foreground="{TemplateBinding Foreground}"/>
+                        </Panel>
+                    </Border>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    
+    <Style Selector="chrome|MaterialTitleBar:not(.notransitions) /template/ Border#PART_AppTitleBorder">
+        <Setter Property="Transitions">
+            <Transitions>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0.25" Easing="CircularEaseOut" />
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="chrome|MaterialTitleBar:right-aligned-buttons /template/ chrome|MaterialTitleBarButtons#PART_CaptionButtons">
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+    </Style>
+    
+    <Style Selector="chrome|MaterialTitleBar:right-aligned-buttons /template/ StackPanel#PART_TitleContainer">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+    
+    <Style Selector="chrome|MaterialTitleBar:left-aligned-buttons /template/ chrome|MaterialTitleBarButtons#PART_CaptionButtons">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+    
+    <Style Selector="chrome|MaterialTitleBar:left-aligned-buttons /template/ StackPanel#PART_TitleContainer">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Margin" Value="140,0,0,0"/>
+    </Style>
+    
+    <Style Selector="chrome|MaterialTitleBar:fullscreen /template/ Border#PART_AppTitleBorder">
+        <Setter Property="RenderTransform" Value="translateY(-32px)" />
+    </Style>
+    
+    <Style Selector="chrome|MaterialTitleBar:fullscreen:pointerover /template/ Border#PART_AppTitleBorder">
+        <Setter Property="RenderTransform" Value="none" />
+    </Style>
+    
+    <!-- ReSharper restore InconsistentNaming -->
+</Styles>
