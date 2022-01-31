@@ -18,13 +18,13 @@ jobs:
     - name: Build
       run: dotnet build --no-restore --configuration Release ./src/Material.WindowStyle
     - name: Pack
-      run: dotnet pack --configuration Release /p:PatchNumber=$GITHUB_RUN_NUMBER-nightly ./src/Material.WindowStyle
+      run: dotnet pack --configuration Release /p:PatchNumber=${{ env.GITHUB_RUN_NUMBER }}-nightly ./src/Material.WindowStyle
     - name: Move package to artifacts
       run: |
         mkdir artifacts
         find . -name \*.nupkg -exec mv {} artifacts/ \;
     - name: Publish to NuGet
-      run: dotnet nuget push "artifacts/Material.WindowStyle.*.nupkg" --api-key ${{secrets.NUGET_KEY}} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      run: dotnet nuget push "artifacts/Material.WindowStyle.*.nupkg" --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
