@@ -11,6 +11,15 @@ namespace Material.WindowStyle.Chrome
     [PseudoClasses(":minimized", ":normal", ":maximized", ":fullscreen")]
     public class MaterialTitleBarButtons : TemplatedControl
     {
+        public static readonly StyledProperty<bool> IsReversedProperty =
+            AvaloniaProperty.Register<MaterialTitleBarButtons, bool>(nameof(IsReversed));
+
+        public bool IsReversed
+        {
+            get => GetValue(IsReversedProperty);
+            set => SetValue(IsReversedProperty, value);
+        }
+        
         private CompositeDisposable? _disposables;
         private Window? _hostWindow;
 
