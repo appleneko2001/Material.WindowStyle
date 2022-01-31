@@ -1,0 +1,69 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:entities="clr-namespace:Material.WindowStyle.Demo.Views.Models.Entities"
+                    xmlns:strings="clr-namespace:Material.WindowStyle.Demo.Views.Resources.Strings"
+
+                    x:Class="Material.WindowStyle.Demo.Views.Resources.EntityViewerTemplates">
+    
+    <RecyclePool x:Key="{x:Static strings:KeyNames.EntityElementRecyclePool}"/>
+    <RecyclingElementFactory x:Key="{x:Static strings:KeyNames.EntityElementTemplate}"
+                             RecyclePool="{StaticResource {x:Static strings:KeyNames.EntityElementRecyclePool}}"
+                             SelectTemplateKey="OnEntityElementTemplateSelectTemplateKey">
+        <RecyclingElementFactory.Templates>
+            <DataTemplate DataType="entities:LinkEntityViewModel" x:Key="LinkText">
+                <TextBlock Text="{CompiledBinding Text}"
+                           FontStyle="{CompiledBinding FontStyle}"
+                           
+                           TextWrapping="Wrap"
+                           TextTrimming="CharacterEllipsis"
+                           TextDecorations="Underline"
+                           Cursor="Hand"
+                           ToolTip.Tip="{CompiledBinding ToolTip}"/>
+            </DataTemplate>
+            <DataTemplate DataType="entities:HeaderTextEntityViewModel" x:Key="Header">
+                <TextBlock Text="{CompiledBinding Text}"
+                           FontSize="{CompiledBinding FontSize}"
+                           FontStyle="{CompiledBinding FontStyle}"
+                           FontWeight="{CompiledBinding FontWeight}"
+                           
+                           TextWrapping="Wrap"
+                           TextTrimming="CharacterEllipsis"
+                           ToolTip.Tip="{CompiledBinding ToolTip}"/>
+            </DataTemplate>
+            <DataTemplate DataType="entities:TextEntityViewModel" x:Key="Text">
+                <TextBlock Text="{CompiledBinding Text}"
+                           FontStyle="{CompiledBinding FontStyle}"
+                           
+                           TextWrapping="Wrap"
+                           TextTrimming="CharacterEllipsis"
+                           ToolTip.Tip="{CompiledBinding ToolTip}"/>
+            </DataTemplate>
+            <DataTemplate DataType="entities:BulletItemEntityViewModel" x:Key="BulletItem">
+                <DockPanel>
+                    <Ellipse Name="PART_Bullet"/>
+                    <ItemsControl Items="{CompiledBinding Entities}"
+                                  ItemTemplate="{StaticResource {x:Static strings:KeyNames.EntityElementTemplate}}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </DockPanel>
+            </DataTemplate>
+            <DataTemplate DataType="entities:CombinedEntityViewModel" x:Key="Combination">
+                <ItemsControl Items="{CompiledBinding Entities}"
+                              ItemTemplate="{StaticResource {x:Static strings:KeyNames.EntityElementTemplate}}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </DataTemplate>
+            <DataTemplate DataType="entities:EntityViewModel" x:Key="Base">
+                
+            </DataTemplate>
+        </RecyclingElementFactory.Templates>
+    </RecyclingElementFactory>
+</ResourceDictionary>

@@ -1,0 +1,55 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:models="clr-namespace:Material.WindowStyle.Demo.Views.Models"
+        xmlns:strings="clr-namespace:Material.WindowStyle.Demo.Views.Resources.Strings"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Material.WindowStyle.Demo.Views.DemoWindow"
+        Title="DemoWindow"
+        
+
+        x:DataType="models:DemoWindowViewModel">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="avares://Material.WindowStyle.Demo/Views/Resources/EntityViewerTemplates.axaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.DataContext>
+        <models:DemoWindowViewModel Source="avares://Material.WindowStyle.Demo/readme.txt"/>
+    </Window.DataContext>
+    
+    <ScrollViewer HorizontalContentAlignment="Center">
+        <ReversibleStackPanel Margin="16" MaxWidth="800">
+            <TextBlock Classes="Headline4"
+                       Text="Welcome to Material.WindowStyle Demo!"
+                       TextWrapping="Wrap"
+                       TextTrimming="CharacterEllipsis"/>
+            <StackPanel Margin="0, 8">
+                <TextBlock Classes="Subtitle1"
+                           Text="To use this window style in your Avalonia Application, please follow below steps!"
+                           TextWrapping="Wrap"
+                           TextTrimming="CharacterEllipsis"/>
+                <TextBlock Classes="Headline6" Margin="0,16,0,0" Text="Requirements:"/>
+                <ItemsRepeater Margin="8" Items="{CompiledBinding Requirements}"
+                               ItemTemplate="{StaticResource {x:Static strings:KeyNames.EntityElementTemplate}}">
+                    <ItemsRepeater.Layout>
+                        <StackLayout Spacing="8"/>
+                    </ItemsRepeater.Layout>
+                </ItemsRepeater>
+            </StackPanel>
+        
+            <StackPanel Margin="0, 8">
+                <TextBlock Classes="Headline6" Margin="0,16,0,0" Text="Steps:"/>
+                <ItemsRepeater Margin="8" Items="{CompiledBinding Steps}"
+                               ItemTemplate="{StaticResource {x:Static strings:KeyNames.EntityElementTemplate}}">
+                    <ItemsRepeater.Layout>
+                        <StackLayout Spacing="8"/>
+                    </ItemsRepeater.Layout>
+                </ItemsRepeater>
+            </StackPanel>
+        </ReversibleStackPanel>
+    </ScrollViewer>
+</Window>

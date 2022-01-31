@@ -1,0 +1,32 @@
+﻿<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
+             xmlns:chrome="clr-namespace:Material.WindowStyle.Chrome;assembly=Material.WindowStyle"
+
+             x:Class="Material.WindowStyle.Demo.DemoApp">
+    <Application.Resources>
+        <themes:BundledTheme BaseTheme="Light" PrimaryColor="Blue" SecondaryColor="Red"/>
+    </Application.Resources>
+    <Application.Styles>
+        <StyleInclude Source="avares://Material.Avalonia/Material.Avalonia.Templates.xaml" />
+        <StyleInclude Source="avares://Material.WindowStyle/StylesIndex.axaml"/>
+        
+        <Style Selector="Ellipse#PART_Bullet">
+            <Setter Property="Width" Value="4"/>
+            <Setter Property="Height" Value="4"/>
+            <Setter Property="Margin" Value="0, 6, 16, 6"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Fill" Value="{DynamicResource MaterialDesignBody}"/>
+        </Style>
+        
+        <Style Selector="ToolTip TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="MaxWidth" Value="240"/>
+        </Style>
+        
+        <Style Selector="chrome|MaterialTitleBar">
+            <Setter Property="ButtonsAlign" Value="Right"/>
+        </Style>
+    </Application.Styles>
+</Application>
