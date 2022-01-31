@@ -12,6 +12,11 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <!-- For nightly versions -->
+    <PropertyGroup>
+        <Version Condition="'$(PatchNumber)' != ''">$(VersionPrefix).$(PatchNumber)</Version>
+    </PropertyGroup>
+
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
       <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     </PropertyGroup>
