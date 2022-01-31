@@ -25,21 +25,21 @@
                     
                     <Border Name="PART_AppTitleBorder"
                             BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                        <Panel Name="PART_Container">
-                            <Panel Name="PART_TitleContainer"
-                                   Background="{TemplateBinding Background}">
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}">
+                        <DockPanel Name="PART_DockContainer">
+                            <chrome:MaterialTitleBarButtons Name="PART_CaptionButtons"
+                                                            VerticalAlignment="Top"
+                                                            Foreground="{TemplateBinding Foreground}"/>
+                            
+                            <Panel Name="PART_TitleContainer">
                                 <TextBlock Text="{TemplateBinding Title}"
                                            VerticalAlignment="Center"
                                            Margin="8,0"/>
                                 <Border Name="PART_WindowDragZone"
                                         Background="Transparent"/>
                             </Panel>
-                        
-                            <chrome:MaterialTitleBarButtons Name="PART_CaptionButtons"
-                                                            VerticalAlignment="Top"
-                                                            Foreground="{TemplateBinding Foreground}"/>
-                        </Panel>
+                        </DockPanel>
                     </Border>
                 </Panel>
             </ControlTemplate>
@@ -54,21 +54,18 @@
         </Setter>
     </Style>
     
-    <Style Selector="chrome|MaterialTitleBar:right-aligned-buttons /template/ chrome|MaterialTitleBarButtons#PART_CaptionButtons">
-        <Setter Property="HorizontalAlignment" Value="Right"/>
+    <Style Selector="chrome|MaterialTitleBar:right-aligned-buttons /template/ 
+                     DockPanel#PART_DockContainer > chrome|MaterialTitleBarButtons#PART_CaptionButtons,
+                     chrome|MaterialTitleBar:right-aligned-buttons /template/
+                     DockPanel#PART_DockContainer > Panel#PART_TitleContainer">
+        <Setter Property="DockPanel.Dock" Value="Right"/>
     </Style>
     
-    <Style Selector="chrome|MaterialTitleBar:right-aligned-buttons /template/ StackPanel#PART_TitleContainer">
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-    </Style>
-    
-    <Style Selector="chrome|MaterialTitleBar:left-aligned-buttons /template/ chrome|MaterialTitleBarButtons#PART_CaptionButtons">
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-    </Style>
-    
-    <Style Selector="chrome|MaterialTitleBar:left-aligned-buttons /template/ StackPanel#PART_TitleContainer">
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="Margin" Value="140,0,0,0"/>
+    <Style Selector="chrome|MaterialTitleBar:left-aligned-buttons /template/ 
+                     DockPanel#PART_DockContainer > chrome|MaterialTitleBarButtons#PART_CaptionButtons,
+                     chrome|MaterialTitleBar:left-aligned-buttons /template/
+                     DockPanel#PART_DockContainer > Panel#PART_TitleContainer">
+        <Setter Property="DockPanel.Dock" Value="Left"/>
     </Style>
     
     <Style Selector="chrome|MaterialTitleBar:fullscreen /template/ Border#PART_AppTitleBorder">
