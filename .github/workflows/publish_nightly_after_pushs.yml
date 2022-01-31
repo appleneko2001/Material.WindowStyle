@@ -13,14 +13,12 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-    - name: Redirect directory to src/Material.WindowStyle
-      run: cd ./src/Material.WindowStyle
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ./src/Material.WindowStyle
     - name: Build
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build --no-restore --configuration Release ./src/Material.WindowStyle
     - name: Pack
-      run: dotnet pack --configuration Release /p:PatchNumber=$GITHUB_RUN_NUMBER-nightly
+      run: dotnet pack --configuration Release /p:PatchNumber=$GITHUB_RUN_NUMBER-nightly ./src/Material.WindowStyle
     - name: Move package to artifacts
       run: |
         mkdir artifacts
