@@ -14,9 +14,10 @@
         <Setter Property="Height" Value="{TemplateBinding Height}"/>
         <Setter Property="Template">
             <ControlTemplate>
-                <StackPanel Name="PART_ButtonsPanel"
-                            Orientation="Horizontal"
-                            VerticalAlignment="Stretch">
+                <ReversibleStackPanel Name="PART_ButtonsPanel"
+                                      Orientation="Horizontal"
+                                      VerticalAlignment="Stretch"
+                                      ReverseOrder="{TemplateBinding IsReversed}">
                     <TemplatedControl Name="PART_FullScreenButton" Classes="button"
                                       ToolTip.Tip="Fullscreen / Exit fullscreen mode"/>
                     <TemplatedControl Name="PART_MinimizeButton" Classes="button"
@@ -25,7 +26,7 @@
                                       ToolTip.Tip="Maximize / restore window"/>
                     <TemplatedControl Name="PART_CloseButton" Classes="button"
                                       ToolTip.Tip="Close window"/>
-                </StackPanel>
+                </ReversibleStackPanel>
             </ControlTemplate>
         </Setter>
     </Style>
