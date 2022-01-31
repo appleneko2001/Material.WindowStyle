@@ -68,6 +68,11 @@
         <Setter Property="DockPanel.Dock" Value="Left"/>
     </Style>
     
+    <Style Selector="chrome|MaterialTitleBar:left-aligned-buttons /template/ 
+                     DockPanel#PART_DockContainer > chrome|MaterialTitleBarButtons#PART_CaptionButtons">
+        <Setter Property="IsReversed" Value="True"/>
+    </Style>
+    
     <Style Selector="chrome|MaterialTitleBar:fullscreen /template/ Border#PART_AppTitleBorder">
         <Setter Property="RenderTransform" Value="translateY(-32px)" />
     </Style>
