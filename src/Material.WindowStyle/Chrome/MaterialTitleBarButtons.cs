@@ -19,19 +19,25 @@ namespace Material.WindowStyle.Chrome
             get => GetValue(IsReversedProperty);
             set => SetValue(IsReversedProperty, value);
         }
-        
+
         private CompositeDisposable? _disposables;
         private Window? _hostWindow;
 
         public void Attach(Window hostWindow)
         {
-            if (_disposables == null)
+            if (_disposables != null)
             {
-                _hostWindow = hostWindow;
+                if (!_disposables.IsDisposed)
+                    _disposables.Dispose();
 
-                _disposables = new CompositeDisposable
-                {
-                    _hostWindow.GetObservable(Window.WindowStateProperty)
+                _disposables = null;
+            }
+
+            _hostWindow = hostWindow;
+
+            _disposables = new CompositeDisposable
+            {
+                _hostWindow.GetObservable(Window.WindowStateProperty)
                     .Subscribe(x =>
                     {
                         PseudoClasses.Set(":minimized", x == WindowState.Minimized);
@@ -39,14 +45,14 @@ namespace Material.WindowStyle.Chrome
                         PseudoClasses.Set(":maximized", x == WindowState.Maximized);
                         PseudoClasses.Set(":fullscreen", x == WindowState.FullScreen);
                     })
-                };
-            }
+            };
         }
 
         public void Detach()
         {
-            if (_disposables == null) 
+            if (_disposables == null)
                 return;
+
             _disposables.Dispose();
             _disposables = null;
 
@@ -75,7 +81,9 @@ namespace Material.WindowStyle.Chrome
         {
             if (_hostWindow != null)
             {
-                _hostWindow!.WindowState = _hostWindow.WindowState == WindowState.FullScreen ? WindowState.Normal : WindowState.FullScreen;
+                _hostWindow!.WindowState = _hostWindow.WindowState == WindowState.FullScreen
+                    ? WindowState.Normal
+                    : WindowState.FullScreen;
             }
         }
 
@@ -96,7 +104,9 @@ namespace Material.WindowStyle.Chrome
         {
             if (_hostWindow != null)
             {
-                _hostWindow!.WindowState = _hostWindow.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+                _hostWindow!.WindowState = _hostWindow.WindowState == WindowState.Maximized
+                    ? WindowState.Normal
+                    : WindowState.Maximized;
             }
         }
 
