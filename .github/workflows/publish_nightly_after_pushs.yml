@@ -18,7 +18,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore --configuration Release ./src/Material.WindowStyle/Material.WindowStyle.csproj
     - name: Pack
-      run: dotnet pack --configuration Release -p:PatchNumber=$GITHUB_RUN_NUMBER --version-suffix "alpha" ./src/Material.WindowStyle/Material.WindowStyle.csproj
+      run: dotnet pack --configuration Release -p:PatchNumber=$GITHUB_RUN_NUMBER-alpha ./src/Material.WindowStyle/Material.WindowStyle.csproj
     - name: Move package to artifacts
       run: |
         mkdir artifacts
