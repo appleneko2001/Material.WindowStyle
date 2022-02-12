@@ -30,7 +30,11 @@
                         <DockPanel Name="PART_DockContainer">
                             <chrome:MaterialTitleBarButtons Name="PART_CaptionButtons"
                                                             VerticalAlignment="Top"
-                                                            Foreground="{TemplateBinding Foreground}"/>
+                                                            Foreground="{TemplateBinding Foreground}">
+                                <chrome:MaterialTitleBarButtons.Styles>
+                                    <StyleInclude Source="avares://Material.WindowStyle/Styles/Button.axaml"/>
+                                </chrome:MaterialTitleBarButtons.Styles>
+                            </chrome:MaterialTitleBarButtons>
                             
                             <Panel Name="PART_TitleContainer">
                                 <TextBlock Text="{TemplateBinding Title}"
