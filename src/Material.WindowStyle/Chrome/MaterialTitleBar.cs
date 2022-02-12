@@ -6,6 +6,7 @@ using Avalonia.Controls.Chrome;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
+using Avalonia.Platform;
 
 namespace Material.WindowStyle.Chrome
 {
@@ -38,7 +39,20 @@ namespace Material.WindowStyle.Chrome
 
         private void UpdateState(Window? window)
         {
-            IsVisible = window?.PlatformImpl.NeedsManagedDecorations ?? true;
+            if (window is not null)
+            {
+                var fullDecor = window.SystemDecorations == SystemDecorations.Full;
+                
+                var result = fullDecor && window.ExtendClientAreaChromeHints == ExtendClientAreaChromeHints.NoChrome;
+                result = result && window.ExtendClientAreaChromeHints == ExtendClientAreaChromeHints.PreferSystemChrome;
+                result = result && window.PlatformImpl.NeedsManagedDecorations;
+
+                IsVisible = !result;
+            }
+            else
+            {
+                IsVisible = true;
+            }
         }
 
         protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
