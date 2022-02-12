@@ -10,6 +10,9 @@
         <Authors>github@appleneko2001</Authors>
         <Description>Provides a beautiful modern window design for Avalonia Applications with Material.Avalonia toolkit.</Description>
         <Nullable>enable</Nullable>
+        <PackageProjectUrl>https://github.com/appleneko2001/Material.WindowStyle</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/appleneko2001/Material.WindowStyle/blob/development-branch/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/appleneko2001/Material.WindowStyle</RepositoryUrl>
     </PropertyGroup>
 
     <!-- For nightly versions -->
