@@ -4,13 +4,18 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
-using Avalonia.Input;
+using Avalonia.Interactivity;
 
 namespace Material.WindowStyle.Chrome
 {
     [PseudoClasses(":minimized", ":normal", ":maximized", ":fullscreen")]
     public class MaterialTitleBarButtons : TemplatedControl
     {
+        private const string T_CloseButton = "PART_CloseButton";
+        private const string T_RestoreButton = "PART_RestoreButton";
+        private const string T_MinimizeButton = "PART_MinimizeButton";
+        private const string T_FullscreenButton = "PART_FullScreenButton";
+        
         public static readonly StyledProperty<bool> IsReversedProperty =
             AvaloniaProperty.Register<MaterialTitleBarButtons, bool>(nameof(IsReversed));
 
@@ -63,21 +68,55 @@ namespace Material.WindowStyle.Chrome
         {
             base.OnApplyTemplate(e);
 
-            var closeButton = e.NameScope.Get<TemplatedControl>("PART_CloseButton");
-            var restoreButton = e.NameScope.Get<TemplatedControl>("PART_RestoreButton");
-            var minimizeButton = e.NameScope.Get<TemplatedControl>("PART_MinimizeButton");
-            var fullScreenButton = e.NameScope.Get<TemplatedControl>("PART_FullScreenButton");
+            var basicButtonsIds = new []{T_CloseButton, T_RestoreButton, T_MinimizeButton, T_FullscreenButton};
 
-            closeButton.PointerReleased += OnCloseButtonOnPointerReleased;
-
-            restoreButton.PointerReleased += OnRestoreButtonOnPointerReleased;
-
-            minimizeButton.PointerReleased += OnMinimiseButtonOnPointerReleased;
-
-            fullScreenButton.PointerReleased += OnFullScreenButtonOnPointerReleased;
+            foreach (var id in basicButtonsIds)
+            {
+                var control = e.NameScope.Get<TemplatedControl>(id);
+                control.TemplateApplied += OnButtonContainerTemplateApplied;
+            }
         }
 
-        private void OnFullScreenButtonOnPointerReleased(object sender, PointerReleasedEventArgs e)
+        private void OnButtonContainerTemplateApplied(object sender, TemplateAppliedEventArgs e)
+        {
+            if (sender is not TemplatedControl c)
+                return;
+
+            var b = e.NameScope.Find<Button>("PART_Button");
+            if (b != null)
+            {
+                switch (c.Name)
+                {
+                    case T_CloseButton:
+                    {
+                        var d = b.AddDisposableHandler(Button.ClickEvent, OnCloseButtonClicked);
+                        _disposables?.Add(d);
+                    } break;
+                    
+                    case T_RestoreButton:
+                    {
+                        var d = b.AddDisposableHandler(Button.ClickEvent, OnRestoreButtonClicked);
+                        _disposables?.Add(d);
+                    } break;
+                    
+                    case T_MinimizeButton:
+                    {
+                        var d = b.AddDisposableHandler(Button.ClickEvent, OnMinimiseButtonClicked);
+                        _disposables?.Add(d);
+                    } break;
+                    
+                    case T_FullscreenButton:
+                    {
+                        var d = b.AddDisposableHandler(Button.ClickEvent, OnFullScreenButtonClicked);
+                        _disposables?.Add(d);
+                    } break;
+                }
+            }
+
+            c.TemplateApplied -= OnButtonContainerTemplateApplied;
+        }
+
+        private void OnFullScreenButtonClicked(object sender, RoutedEventArgs e)
         {
             if (_hostWindow != null)
             {
@@ -87,7 +126,7 @@ namespace Material.WindowStyle.Chrome
             }
         }
 
-        private void OnMinimiseButtonOnPointerReleased(object sender, PointerReleasedEventArgs e)
+        private void OnMinimiseButtonClicked(object sender, RoutedEventArgs e)
         {
             if (_hostWindow != null)
             {
@@ -95,7 +134,7 @@ namespace Material.WindowStyle.Chrome
             }
         }
 
-        private void OnRestoreButtonOnPointerReleased(object sender, PointerReleasedEventArgs e)
+        private void OnRestoreButtonClicked(object sender, RoutedEventArgs e)
         {
             SwitchMaximizeWindowState();
         }
@@ -110,7 +149,7 @@ namespace Material.WindowStyle.Chrome
             }
         }
 
-        private void OnCloseButtonOnPointerReleased(object sender, PointerReleasedEventArgs e)
+        private void OnCloseButtonClicked(object sender, RoutedEventArgs e)
         {
             _hostWindow?.Close();
         }
