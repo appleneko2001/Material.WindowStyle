@@ -63,6 +63,8 @@
                                       Orientation="Horizontal"
                                       VerticalAlignment="Stretch"
                                       ReverseOrder="{TemplateBinding IsReversed}">
+                    <TemplatedControl Name="PART_CustomElements"/>
+                    
                     <TemplatedControl Name="PART_FullScreenButton" Classes="button"
                                       ToolTip.Tip="Fullscreen / Exit fullscreen mode"/>
                     <TemplatedControl Name="PART_MinimizeButton" Classes="button"
