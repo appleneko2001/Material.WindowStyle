@@ -8,7 +8,9 @@
         x:Class="Material.WindowStyle.Demo.Views.DemoWindow"
         Title="DemoWindow"
         
-
+        SystemDecorations="BorderOnly"
+        ExtendClientAreaToDecorationsHint="True"
+        
         x:DataType="models:DemoWindowViewModel">
     <Window.Resources>
         <ResourceDictionary>
