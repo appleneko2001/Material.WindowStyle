@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:models="clr-namespace:Material.WindowStyle.Demo.Views.Models"
         xmlns:strings="clr-namespace:Material.WindowStyle.Demo.Views.Resources.Strings"
+        xmlns:chrome="clr-namespace:Material.WindowStyle.Chrome;assembly=Material.WindowStyle"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Material.WindowStyle.Demo.Views.DemoWindow"
         Title="DemoWindow"
@@ -12,6 +13,23 @@
         ExtendClientAreaToDecorationsHint="True"
         
         x:DataType="models:DemoWindowViewModel">
+    
+    <!-- ReSharper disable Xaml.RedundantCollectionProperty -->
+    <Window.Styles>
+        <!-- Hide and disable fullscreen button: -->
+        <!--Style Selector="chrome|MaterialTitleBar /template/ chrome|MaterialTitleBarButtons 
+                                                 /template/ TemplatedControl#PART_FullScreenButton">
+            <Setter Property="IsEnabled" Value="False"/>
+            <Setter Property="IsVisible" Value="False"/>
+        </Style-->
+        
+        <!-- Actually you can hide other button by replacing element ID "PART_FullScreenButton" to one of them: -->
+        <!-- PART_MinimizeButton -->
+        <!-- PART_RestoreButton -->
+        <!-- PART_CloseButton -->
+    </Window.Styles>
+    <!-- ReSharper restore Xaml.RedundantCollectionProperty -->
+    
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
