@@ -97,8 +97,12 @@
         <Setter Property="Data" Value="{StaticResource FullscreenExitIconData}"/>
     </Style>
     
-    <Style Selector="TemplatedControl#PART_CloseButton /template/ Button#PART_Button:pointerover,
-                     TemplatedControl#PART_CloseButton /template/ Button#PART_Button:focus">
+    <Style Selector="chrome|MaterialTitleBarButtons /template/ TemplatedControl.button /template/ Button#PART_Button">
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+    
+    <Style Selector="chrome|MaterialTitleBarButtons /template/ TemplatedControl#PART_CloseButton /template/ Button#PART_Button:pointerover,
+                     chrome|MaterialTitleBarButtons /template/ TemplatedControl#PART_CloseButton /template/ Button#PART_Button:focus">
         <Setter Property="Background" Value="Red"/>
     </Style>
 </Styles>
