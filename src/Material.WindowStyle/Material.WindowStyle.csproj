@@ -16,7 +16,7 @@
 
     <!-- For nightly versions -->
     <PropertyGroup>
-        <Version Condition="'$(PatchNumber)' != ''">$(VersionPrefix).$(PatchNumber)</Version>
+        <Version Condition="'$(PatchNumber)' != ''">$(PackageVersion).$(PatchNumber)</Version>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
