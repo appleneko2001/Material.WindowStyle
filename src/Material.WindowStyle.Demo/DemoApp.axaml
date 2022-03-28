@@ -9,7 +9,7 @@
     </Application.Resources>
     <Application.Styles>
         <StyleInclude Source="avares://Material.Avalonia/Material.Avalonia.Templates.xaml" />
-        <StyleInclude Source="avares://Material.WindowStyle/StylesIndex.axaml"/>
+        <StyleInclude Source="avares://Material.WindowStyle/WindowStyleInclude.axaml"/>
         
         <Style Selector="Ellipse#PART_Bullet">
             <Setter Property="Width" Value="4"/>

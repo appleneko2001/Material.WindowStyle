@@ -1,5 +1,7 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        
+        x:Class="WindowStyleInclude">
     <StyleInclude Source="avares://Material.WindowStyle/Styles/MaterialTitleBar.axaml"/>
     <StyleInclude Source="avares://Material.WindowStyle/Styles/MaterialTitleBarButtons.axaml"/>
     <StyleInclude Source="avares://Material.WindowStyle/Styles/Window.axaml"/>
