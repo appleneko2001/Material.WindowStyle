@@ -28,4 +28,9 @@
       <PackageReference Include="Material.Avalonia" Version="2.4.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <AvaloniaXaml Remove="StylesIndex.axaml" />
+      <AvaloniaResource Include="StylesIndex.axaml" />
+    </ItemGroup>
+
 </Project>
