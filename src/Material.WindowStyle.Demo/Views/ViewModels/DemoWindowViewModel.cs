@@ -15,24 +15,27 @@ namespace Material.WindowStyle.Demo.Views.ViewModels
             {
                 Entities =
                 {
+                    new LinkEntityViewModel("AvaloniaUI framework")
+                    {
+                        Href = "https://github.com/AvaloniaUI/Avalonia",
+                        ToolTip = "Avalonia is a cross-platform XAML-based UI framework providing a flexible styling system and supporting a wide range of Operating Systems such as Windows via .NET Framework and .NET Core, Linux via Xorg, macOS."
+                    },
+                    new TextEntityViewModel(" version 11.0.0-preview1 or newer.")
+                }
+            }
+        };
+        public AvaloniaList<EntityViewModel> OptionalSupportedLibs { get; } = new()
+        {
+            new BulletItemEntityViewModel
+            {
+                Entities =
+                {
                     new LinkEntityViewModel("Material.Avalonia toolkit")
                     {
                         Href = "https://github.com/AvaloniaCommunity/Material.Avalonia",
                         ToolTip = "This toolkit is a collection of styles to help you customize your Avalonia application theme with Material Design."
                     },
                     new TextEntityViewModel(" version 2.4.0 or newer.")
-                }
-            },
-            new BulletItemEntityViewModel
-            {
-                Entities =
-                {
-                    new LinkEntityViewModel("AvaloniaUI framework")
-                    {
-                        Href = "https://github.com/AvaloniaUI/Avalonia",
-                        ToolTip = "Avalonia is a cross-platform XAML-based UI framework providing a flexible styling system and supporting a wide range of Operating Systems such as Windows via .NET Framework and .NET Core, Linux via Xorg, macOS."
-                    },
-                    new TextEntityViewModel(" version 0.10.7 or newer.")
                 }
             }
         };
