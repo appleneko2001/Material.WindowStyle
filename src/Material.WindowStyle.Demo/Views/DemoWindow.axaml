@@ -2,9 +2,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:models="clr-namespace:Material.WindowStyle.Demo.Views.Models"
         xmlns:strings="clr-namespace:Material.WindowStyle.Demo.Views.Resources.Strings"
         xmlns:chrome="clr-namespace:Material.WindowStyle.Chrome;assembly=Material.WindowStyle"
+        xmlns:viewModels="clr-namespace:Material.WindowStyle.Demo.Views.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Material.WindowStyle.Demo.Views.DemoWindow"
         Title="DemoWindow"
@@ -38,7 +38,7 @@
         </ResourceDictionary>
     </Window.Resources>
     <Window.DataContext>
-        <models:DemoWindowViewModel Source="avares://Material.WindowStyle.Demo/readme.txt"/>
+        <viewModels:DemoWindowViewModel Source="avares://Material.WindowStyle.Demo/readme.txt"/>
     </Window.DataContext>
     
     <ScrollViewer HorizontalContentAlignment="Center">

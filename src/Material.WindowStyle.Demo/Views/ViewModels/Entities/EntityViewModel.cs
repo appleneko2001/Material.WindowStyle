@@ -1,6 +1,6 @@
 ﻿using MinimalMvvm.ViewModels;
 
-namespace Material.WindowStyle.Demo.Views.Models.Entities
+namespace Material.WindowStyle.Demo.Views.ViewModels.Entities
 {
     public class EntityViewModel : ViewModelBase
     {

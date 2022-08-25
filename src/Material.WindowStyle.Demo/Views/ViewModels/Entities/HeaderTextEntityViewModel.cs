@@ -1,6 +1,6 @@
 ﻿using Avalonia.Media;
 
-namespace Material.WindowStyle.Demo.Views.Models.Entities
+namespace Material.WindowStyle.Demo.Views.ViewModels.Entities
 {
     public class HeaderTextEntityViewModel : TextEntityViewModel
     {

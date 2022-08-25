@@ -1,9 +1,9 @@
 ﻿using Avalonia.Media;
-using Material.WindowStyle.Demo.Views.Models.Entities.Interfaces;
+using Material.WindowStyle.Demo.Views.ViewModels.Entities.Interfaces;
 
-namespace Material.WindowStyle.Demo.Views.Models.Entities
+namespace Material.WindowStyle.Demo.Views.ViewModels.Entities
 {
-    public class TextEntityViewModel : EntityViewModel, ITextProperty
+    public class LinkEntityViewModel : ClickableEntityViewModel, ITextProperty
     {
         private string? _text;
 
@@ -16,7 +16,7 @@ namespace Material.WindowStyle.Demo.Views.Models.Entities
                 OnPropertyChanged();
             }
         }
-    
+
         private FontStyle _fontStyle;
         public FontStyle FontStyle
         {
@@ -28,7 +28,7 @@ namespace Material.WindowStyle.Demo.Views.Models.Entities
             }
         }
 
-        public TextEntityViewModel(string? text = null)
+        public LinkEntityViewModel(string? text = null)
         {
             _text = text;
         }

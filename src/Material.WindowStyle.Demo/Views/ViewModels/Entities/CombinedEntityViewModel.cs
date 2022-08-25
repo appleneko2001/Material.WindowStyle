@@ -1,6 +1,6 @@
 ﻿using Avalonia.Collections;
 
-namespace Material.WindowStyle.Demo.Views.Models.Entities
+namespace Material.WindowStyle.Demo.Views.ViewModels.Entities
 {
     public class CombinedEntityViewModel : EntityViewModel
     {

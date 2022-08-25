@@ -2,10 +2,10 @@
 using Avalonia.Collections;
 using Avalonia.Media;
 using Avalonia.Platform;
-using Material.WindowStyle.Demo.Views.Models.Entities;
+using Material.WindowStyle.Demo.Views.ViewModels.Entities;
 using MinimalMvvm.ViewModels;
 
-namespace Material.WindowStyle.Demo.Views.Models
+namespace Material.WindowStyle.Demo.Views.ViewModels
 {
     public class DemoWindowViewModel : ViewModelBase
     {
