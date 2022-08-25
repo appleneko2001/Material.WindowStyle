@@ -51,7 +51,7 @@
         </Setter>
     </Style>
     
-    <Style Selector="chrome|MaterialTitleBar:not(.notransitions) /template/ Border#PART_AppTitleBorder">
+    <Style Selector="chrome|MaterialTitleBar:not(.no-transitions) /template/ Border#PART_AppTitleBorder">
         <Setter Property="Transitions">
             <Transitions>
                 <TransformOperationsTransition Property="RenderTransform" Duration="0.25" Easing="CircularEaseOut" />
