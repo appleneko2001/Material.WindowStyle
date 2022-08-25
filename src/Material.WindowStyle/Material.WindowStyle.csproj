@@ -4,7 +4,7 @@
         <AssemblyName>Material.WindowStyle</AssemblyName>
         <RootNamespace>Material.WindowStyle</RootNamespace>
         <LangVersion>latest</LangVersion>
-        <VersionPrefix>0.10.9</VersionPrefix>
+        <VersionPrefix>0.11.0</VersionPrefix>
         <Authors>github@appleneko2001</Authors>
         <Description>Provides a beautiful modern window design for Avalonia Applications with Material.Avalonia toolkit.</Description>
         <Nullable>enable</Nullable>
