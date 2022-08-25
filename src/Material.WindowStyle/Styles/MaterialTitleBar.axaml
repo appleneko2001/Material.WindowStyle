@@ -18,6 +18,7 @@
                     
                     <!-- The title bar will shown when cursor trigger upper zone (below one) -->
                     <Panel Name="PART_FullScreenMouseTracker"
+                           Background="Transparent"
                            VerticalAlignment="Top"
                            Height="1"/>
                     
