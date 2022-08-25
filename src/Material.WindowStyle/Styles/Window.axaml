@@ -38,4 +38,22 @@
     <Style Selector="Window[WindowState=FullScreen] /template/ Panel#PART_ContentPanel">
         <Setter Property="Margin" Value="0"/>
     </Style>
+    
+    <Style Selector="Window.mini-titlebar /template/ Panel#PART_ContentPanel">
+        <Setter Property="Margin" Value="0,24,0,0"/>
+    </Style>
+    
+    <Style Selector="Window.mini-titlebar /template/ 
+        chrome|MaterialTitleBar#PART_TitleBar">
+        <Setter Property="Height" Value="24"/>
+    </Style>
+    
+    <Style Selector="Window.mini-titlebar /template/ 
+        chrome|MaterialTitleBar#PART_TitleBar">
+        <Setter Property="Height" Value="24"/>
+    </Style>
+    
+    <Style Selector="Window.windows-platform-fix:not(Window[WindowState=FullScreen]) /template/ Panel#PART_VisualRootPanel">
+        <Setter Property="Margin" Value="8"/>
+    </Style>
 </Styles>
