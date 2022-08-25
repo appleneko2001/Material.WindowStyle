@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:entities="clr-namespace:Material.WindowStyle.Demo.Views.Models.Entities"
                     xmlns:strings="clr-namespace:Material.WindowStyle.Demo.Views.Resources.Strings"
+                    xmlns:entities="clr-namespace:Material.WindowStyle.Demo.Views.ViewModels.Entities"
 
                     x:Class="Material.WindowStyle.Demo.Views.Resources.EntityViewerTemplates">
     

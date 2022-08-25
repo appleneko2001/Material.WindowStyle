@@ -1,5 +1,5 @@
 ﻿using Avalonia.Controls;
-using Material.WindowStyle.Demo.Views.Models.Entities;
+using Material.WindowStyle.Demo.Views.ViewModels.Entities;
 
 namespace Material.WindowStyle.Demo.Views.Resources
 {

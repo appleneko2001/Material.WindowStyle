@@ -12,7 +12,7 @@
         SystemDecorations="Full"
         ExtendClientAreaToDecorationsHint="True"
         
-        x:DataType="models:DemoWindowViewModel">
+        x:DataType="viewModels:DemoWindowViewModel">
     
     <!-- ReSharper disable Xaml.RedundantCollectionProperty -->
     <Window.Styles>
