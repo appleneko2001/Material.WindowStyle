@@ -9,6 +9,8 @@
         x:Class="Material.WindowStyle.Demo.Views.DemoWindow"
         Title="DemoWindow"
         
+        Classes="windows-platform-fix"
+        
         SystemDecorations="Full"
         ExtendClientAreaToDecorationsHint="True"
         
@@ -16,6 +18,12 @@
     
     <!-- ReSharper disable Xaml.RedundantCollectionProperty -->
     <Window.Styles>
+        <!-- Custom colours of title bar -->
+        <Style Selector="chrome|MaterialTitleBar">
+            <Setter Property="Background" Value="#4C4C4C"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        
         <!-- Hide and disable fullscreen button: -->
         <!--Style Selector="chrome|MaterialTitleBar /template/ chrome|MaterialTitleBarButtons 
                                                  /template/ TemplatedControl#PART_FullScreenButton">
@@ -54,6 +62,14 @@
                            TextTrimming="CharacterEllipsis"/>
                 <TextBlock Classes="Headline6" Margin="0,16,0,0" Text="Requirements:"/>
                 <ItemsRepeater Margin="8" Items="{CompiledBinding Requirements}"
+                               ItemTemplate="{StaticResource {x:Static strings:KeyNames.EntityElementTemplate}}">
+                    <ItemsRepeater.Layout>
+                        <StackLayout Spacing="8"/>
+                    </ItemsRepeater.Layout>
+                </ItemsRepeater>
+                
+                <TextBlock Classes="Headline6" Margin="0,16,0,0" Text="Optional supported libs:"/>
+                <ItemsRepeater Margin="8" Items="{CompiledBinding OptionalSupportedLibs}"
                                ItemTemplate="{StaticResource {x:Static strings:KeyNames.EntityElementTemplate}}">
                     <ItemsRepeater.Layout>
                         <StackLayout Spacing="8"/>
