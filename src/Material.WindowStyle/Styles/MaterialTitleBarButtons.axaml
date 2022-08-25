@@ -36,7 +36,8 @@
     <Style Selector="chrome|MaterialTitleBarButtons /template/ TemplatedControl.button">
         <Setter Property="Template">
             <ControlTemplate>
-                <Button Name="PART_Button">
+                <Button Name="PART_Button"
+                        Classes="material-title-bar-button">
                     <Viewbox Name="PART_IconView">
                         <Path Name="PART_IconPath"
                               Fill="{TemplateBinding Foreground}"/>
