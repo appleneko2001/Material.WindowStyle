@@ -30,6 +30,18 @@
                            TextTrimming="CharacterEllipsis"
                            ToolTip.Tip="{CompiledBinding ToolTip}"/>
             </DataTemplate>
+            <DataTemplate DataType="entities:MonospaceTextEntityViewModel" x:Key="MonospaceText">
+                <TextBlock Text="{CompiledBinding Text}"
+                           Classes="monospaced"
+                           FontStyle="{CompiledBinding FontStyle}"
+                           
+                           TextWrapping="Wrap"
+                           TextTrimming="CharacterEllipsis"
+                           ToolTip.Tip="{CompiledBinding ToolTipClickToCopy}"
+                           
+                           PointerPressed="MonospacedTextElement_OnPointerPressed"
+                           PointerReleased="MonospacedTextElement_OnPointerReleased"/>
+            </DataTemplate>
             <DataTemplate DataType="entities:TextEntityViewModel" x:Key="Text">
                 <TextBlock Text="{CompiledBinding Text}"
                            FontStyle="{CompiledBinding FontStyle}"
@@ -45,7 +57,7 @@
                                   ItemTemplate="{StaticResource {x:Static strings:KeyNames.EntityElementTemplate}}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal"/>
+                                <WrapPanel/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                     </ItemsControl>

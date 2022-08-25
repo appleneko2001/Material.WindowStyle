@@ -22,6 +22,15 @@
             <Setter Property="MaxWidth" Value="240"/>
         </Style>
         
+        <Style Selector="TextBlock.monospaced">
+            <Setter Property="FontFamily" Value="Courier New"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+        
+        <Style Selector="TextBlock.monospaced:pointerover">
+            <Setter Property="TextDecorations" Value="Underline"/>
+        </Style>
+        
         <Style Selector="chrome|MaterialTitleBar">
             <Setter Property="ButtonsAlign" Value="Right"/>
         </Style>
