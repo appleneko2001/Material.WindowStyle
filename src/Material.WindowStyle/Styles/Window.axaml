@@ -53,7 +53,7 @@
         <Setter Property="Height" Value="24"/>
     </Style>
     
-    <Style Selector="Window.windows-platform-fix:not(Window[WindowState=FullScreen]) /template/ Panel#PART_VisualRootPanel">
+    <Style Selector="Window.windows-platform-fix[WindowState=Maximized] /template/ Panel#PART_VisualRootPanel">
         <Setter Property="Margin" Value="8"/>
     </Style>
 </Styles>
