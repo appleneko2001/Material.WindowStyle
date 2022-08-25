@@ -16,13 +16,13 @@ namespace Material.WindowStyle.Chrome
     {
         private CompositeDisposable? _disposables;
         private MaterialTitleBarButtons? _captionButtons;
-        private Border? _dragzone;
-        private DateTime _prevClickDragzone;
+        private Border? _dragZone;
+        private DateTime _prevClickDragZone;
 
-        public static readonly StyledProperty<string> TitleProperty =
+        public static readonly StyledProperty<string?> TitleProperty =
             Window.TitleProperty.AddOwner<TitleBar>();
 
-        public object Title
+        public string? Title
         {
             get => GetValue(TitleProperty);
             private set => SetValue(TitleProperty, value);
@@ -45,7 +45,7 @@ namespace Material.WindowStyle.Chrome
                 
                 var result = fullDecor && window.ExtendClientAreaChromeHints == ExtendClientAreaChromeHints.NoChrome;
                 result = result && window.ExtendClientAreaChromeHints == ExtendClientAreaChromeHints.PreferSystemChrome;
-                result = result && window.PlatformImpl.NeedsManagedDecorations;
+                result = result && (window.PlatformImpl?.NeedsManagedDecorations ?? false);
 
                 IsVisible = !result;
             }
@@ -70,12 +70,12 @@ namespace Material.WindowStyle.Chrome
                 UpdateState(window);
             }
 
-            _dragzone = e.NameScope.Find<Border>("PART_WindowDragZone");
+            _dragZone = e.NameScope.Find<Border>("PART_WindowDragZone");
 
-            if (_dragzone != null)
+            if (_dragZone != null)
             {
-                _dragzone.PointerPressed += DragZonePointerPressed;
-                _dragzone.PointerReleased += DragZonePointerReleased;
+                _dragZone.PointerPressed += DragZonePointerPressed;
+                _dragZone.PointerReleased += DragZonePointerReleased;
             }
         }
 
@@ -106,7 +106,7 @@ namespace Material.WindowStyle.Chrome
                     }),
                 window.GetObservable(Window.IsExtendedIntoWindowDecorationsProperty)
                     .Subscribe(delegate { UpdateState(window); }),
-                window.GetObservable(Window.TitleProperty).Subscribe(delegate(string s) { Title = s; }),
+                window.GetObservable(Window.TitleProperty).Subscribe(delegate(string? s) { Title = s; }),
 
                 this.GetObservable(ButtonsAlignProperty).Subscribe(
                     delegate(TitleButtonAlignment alignment)
@@ -133,7 +133,7 @@ namespace Material.WindowStyle.Chrome
             if (VisualRoot is not Window window)
                 return;
 
-            var delta = DateTime.Now - _prevClickDragzone;
+            var delta = DateTime.Now - _prevClickDragZone;
 
             // If delta is less than 300ms
             if (delta.TotalSeconds < 0.3)
@@ -143,16 +143,16 @@ namespace Material.WindowStyle.Chrome
                     : WindowState.Normal;
             }
 
-            _prevClickDragzone = DateTime.Now;
+            _prevClickDragZone = DateTime.Now;
         }
 
         protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
         {
-            if (_dragzone != null)
+            if (_dragZone != null)
             {
-                _dragzone.PointerPressed -= DragZonePointerPressed;
-                _dragzone.PointerReleased -= DragZonePointerReleased;
-                _dragzone = null;
+                _dragZone.PointerPressed -= DragZonePointerPressed;
+                _dragZone.PointerReleased -= DragZonePointerReleased;
+                _dragZone = null;
             }
 
             base.OnDetachedFromVisualTree(e);

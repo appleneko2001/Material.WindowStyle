@@ -1,6 +1,6 @@
 ﻿namespace Material.WindowStyle
 {
-    public class WindowStyleInclude : global::Avalonia.Styling.Styles 
+    public class WindowStyleInclude : Avalonia.Styling.Styles 
     {
         
     }

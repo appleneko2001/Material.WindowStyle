@@ -11,10 +11,10 @@ namespace Material.WindowStyle.Chrome
     [PseudoClasses(":minimized", ":normal", ":maximized", ":fullscreen")]
     public class MaterialTitleBarButtons : TemplatedControl
     {
-        private const string T_CloseButton = "PART_CloseButton";
-        private const string T_RestoreButton = "PART_RestoreButton";
-        private const string T_MinimizeButton = "PART_MinimizeButton";
-        private const string T_FullscreenButton = "PART_FullScreenButton";
+        private const string PartNameCloseButton = "PART_CloseButton";
+        private const string PartNameRestoreButton = "PART_RestoreButton";
+        private const string PartNameMinimizeButton = "PART_MinimizeButton";
+        private const string PartNameFullscreenButton = "PART_FullScreenButton";
         
         public static readonly StyledProperty<bool> IsReversedProperty =
             AvaloniaProperty.Register<MaterialTitleBarButtons, bool>(nameof(IsReversed));
@@ -68,7 +68,7 @@ namespace Material.WindowStyle.Chrome
         {
             base.OnApplyTemplate(e);
 
-            var basicButtonsIds = new []{T_CloseButton, T_RestoreButton, T_MinimizeButton, T_FullscreenButton};
+            var basicButtonsIds = new []{PartNameCloseButton, PartNameRestoreButton, PartNameMinimizeButton, PartNameFullscreenButton};
 
             foreach (var id in basicButtonsIds)
             {
@@ -87,25 +87,25 @@ namespace Material.WindowStyle.Chrome
             {
                 switch (c.Name)
                 {
-                    case T_CloseButton:
+                    case PartNameCloseButton:
                     {
                         var d = b.AddDisposableHandler(Button.ClickEvent, OnCloseButtonClicked);
                         _disposables?.Add(d);
                     } break;
                     
-                    case T_RestoreButton:
+                    case PartNameRestoreButton:
                     {
                         var d = b.AddDisposableHandler(Button.ClickEvent, OnRestoreButtonClicked);
                         _disposables?.Add(d);
                     } break;
                     
-                    case T_MinimizeButton:
+                    case PartNameMinimizeButton:
                     {
                         var d = b.AddDisposableHandler(Button.ClickEvent, OnMinimiseButtonClicked);
                         _disposables?.Add(d);
                     } break;
                     
-                    case T_FullscreenButton:
+                    case PartNameFullscreenButton:
                     {
                         var d = b.AddDisposableHandler(Button.ClickEvent, OnFullScreenButtonClicked);
                         _disposables?.Add(d);
