@@ -12,7 +12,8 @@
         <PackageLicenseUrl>https://github.com/appleneko2001/Material.WindowStyle/blob/development-branch/LICENSE</PackageLicenseUrl>
         <RepositoryUrl>https://github.com/appleneko2001/Material.WindowStyle</RepositoryUrl>
         <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
-        <PackageIcon>images\window-light-shadow-variant-128x.png</PackageIcon>
+        <!-- NuGet embedded icon F -->
+        <PackageIconUrl>https://github.com/appleneko2001/Material.WindowStyle/raw/development-branch/src/Material.WindowStyle/window-light-shadow-variant-128x.png</PackageIconUrl>
     </PropertyGroup>
 
     <!-- For nightly versions -->
@@ -31,13 +32,6 @@
     <ItemGroup>
       <AvaloniaXaml Remove="WindowStyleInclude.axaml" />
       <AvaloniaResource Include="WindowStyleInclude.axaml" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Update="window-light-shadow-variant-128x.png">
-        <Pack>True</Pack>
-        <PackagePath>images\window-light-shadow-variant-128x.png</PackagePath>
-      </None>
     </ItemGroup>
 
 </Project>
