@@ -1,22 +1,23 @@
 ﻿using Avalonia.Controls;
 using Material.WindowStyle.Demo.Views.Models.Entities;
 
-namespace Material.WindowStyle.Demo.Views.Resources;
-
-public class EntityViewerTemplates : ResourceDictionary
+namespace Material.WindowStyle.Demo.Views.Resources
 {
-    private void OnEntityElementTemplateSelectTemplateKey(object? sender, SelectTemplateEventArgs e)
+    public class EntityViewerTemplates : ResourceDictionary
     {
-        e.TemplateKey = e.DataContext switch
+        private void OnEntityElementTemplateSelectTemplateKey(object? sender, SelectTemplateEventArgs e)
         {
-            LinkEntityViewModel => "LinkText",
-            HeaderTextEntityViewModel => "Header",
-            TextEntityViewModel => "Text",
-            BulletItemEntityViewModel => "BulletItem",
-            CombinedEntityViewModel => "Combination",
-            PictureEntityViewModel => "Picture",
-            EntityViewModel => "Base",
-            _ => throw new ArgumentOutOfRangeException()
-        };
+            e.TemplateKey = e.DataContext switch
+            {
+                LinkEntityViewModel => "LinkText",
+                HeaderTextEntityViewModel => "Header",
+                TextEntityViewModel => "Text",
+                BulletItemEntityViewModel => "BulletItem",
+                CombinedEntityViewModel => "Combination",
+                PictureEntityViewModel => "Picture",
+                EntityViewModel => "Base",
+                _ => throw new ArgumentOutOfRangeException()
+            };
+        }
     }
 }

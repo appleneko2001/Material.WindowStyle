@@ -1,16 +1,19 @@
-﻿namespace Material.WindowStyle.Demo.Views.Models.Entities;
+﻿using MinimalMvvm.ViewModels;
 
-public class EntityViewModel : ViewModelBase
+namespace Material.WindowStyle.Demo.Views.Models.Entities
 {
-    private string? _toolTip;
-
-    public string? ToolTip
+    public class EntityViewModel : ViewModelBase
     {
-        get => _toolTip;
-        set
+        private string? _toolTip;
+
+        public string? ToolTip
         {
-            _toolTip = value;
-            OnPropertyChanged();
+            get => _toolTip;
+            set
+            {
+                _toolTip = value;
+                OnPropertyChanged();
+            }
         }
     }
 }

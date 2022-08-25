@@ -1,14 +1,11 @@
 ﻿<Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
              xmlns:chrome="clr-namespace:Material.WindowStyle.Chrome;assembly=Material.WindowStyle"
 
              x:Class="Material.WindowStyle.Demo.DemoApp">
-    <Application.Resources>
-        <themes:BundledTheme BaseTheme="Light" PrimaryColor="Blue" SecondaryColor="Red"/>
-    </Application.Resources>
     <Application.Styles>
-        <StyleInclude Source="avares://Material.Avalonia/Material.Avalonia.Templates.xaml" />
+        <!--StyleInclude Source="avares://Material.Avalonia/Material.Avalonia.Templates.xaml" /-->
+        <SimpleTheme Mode="Dark"/>
         <StyleInclude Source="avares://Material.WindowStyle/WindowStyleInclude.axaml"/>
         
         <Style Selector="Ellipse#PART_Bullet">

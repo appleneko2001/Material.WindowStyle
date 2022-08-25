@@ -1,26 +1,27 @@
-﻿namespace Material.WindowStyle.Demo.Views.Models.Entities;
-
-public class ClickableEntityViewModel : EntityViewModel
+﻿namespace Material.WindowStyle.Demo.Views.Models.Entities
 {
-    private string? _href;
-    public string? Href
+    public class ClickableEntityViewModel : EntityViewModel
     {
-        get => _href;
-        set
+        private string? _href;
+        public string? Href
         {
-            _href = value;
-            OnPropertyChanged();
+            get => _href;
+            set
+            {
+                _href = value;
+                OnPropertyChanged();
+            }
         }
-    }
     
-    private string? _altText;
-    public string? AltText
-    {
-        get => _altText;
-        set
+        private string? _altText;
+        public string? AltText
         {
-            _altText = value;
-            OnPropertyChanged();
+            get => _altText;
+            set
+            {
+                _altText = value;
+                OnPropertyChanged();
+            }
         }
     }
 }

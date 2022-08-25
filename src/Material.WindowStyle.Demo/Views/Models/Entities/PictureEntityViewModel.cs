@@ -1,23 +1,24 @@
 ﻿using Avalonia.Controls;
 
-namespace Material.WindowStyle.Demo.Views.Models.Entities;
-
-public class PictureEntityViewModel : EntityViewModel
+namespace Material.WindowStyle.Demo.Views.Models.Entities
 {
-    private Image _picture;
-
-    public Image Picture
+    public class PictureEntityViewModel : EntityViewModel
     {
-        get => _picture;
-        protected set
+        private Image _picture;
+
+        public Image Picture
         {
-            _picture = value;
-            OnPropertyChanged();
+            get => _picture;
+            protected set
+            {
+                _picture = value;
+                OnPropertyChanged();
+            }
         }
-    }
 
-    public PictureEntityViewModel()
-    {
+        public PictureEntityViewModel()
+        {
         
+        }
     }
 }

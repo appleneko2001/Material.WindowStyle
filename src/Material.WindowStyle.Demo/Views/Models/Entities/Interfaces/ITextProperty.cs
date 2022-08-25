@@ -1,10 +1,11 @@
 ﻿using Avalonia.Media;
 
-namespace Material.WindowStyle.Demo.Views.Models.Entities.Interfaces;
-
-public interface ITextProperty
+namespace Material.WindowStyle.Demo.Views.Models.Entities.Interfaces
 {
-    string Text { get; }
+    public interface ITextProperty
+    {
+        string Text { get; }
     
-    FontStyle FontStyle { get; }
+        FontStyle FontStyle { get; }
+    }
 }

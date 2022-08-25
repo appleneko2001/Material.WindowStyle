@@ -1,7 +1,8 @@
-﻿namespace Material.WindowStyle.Demo.Views.Resources.Strings;
-
-public static class KeyNames
+﻿namespace Material.WindowStyle.Demo.Views.Resources.Strings
 {
-    public static string EntityElementRecyclePool => "EntityElementRecyclePool";
-    public static string EntityElementTemplate => "EntityElementTemplate";
+    public static class KeyNames
+    {
+        public static string EntityElementRecyclePool => "EntityElementRecyclePool";
+        public static string EntityElementTemplate => "EntityElementTemplate";
+    }
 }
