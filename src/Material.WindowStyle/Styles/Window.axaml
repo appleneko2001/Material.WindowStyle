@@ -5,25 +5,34 @@
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Stretch"/>
         
+        <!-- those two properties holds possibility shows drop-shadow of window -->
+        <Setter Property="SystemDecorations" Value="BorderOnly"/>
+        <Setter Property="ExtendClientAreaChromeHints" Value="SystemChrome"/>
+        
+        <!-- try less step on installation -->
+        <Setter Property="ExtendClientAreaToDecorationsHint" Value="True"/>
+        
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="Template">
             <ControlTemplate>
                 <Panel Name="PART_VisualRootPanel">
                     <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
-                    <Border Background="{TemplateBinding Background}" IsHitTestVisible="False" />
                     <VisualLayerManager>
                         <VisualLayerManager.ChromeOverlayLayer>
                             <chrome:MaterialTitleBar Name="PART_TitleBar"/>
                         </VisualLayerManager.ChromeOverlayLayer>
-                        <Panel Name="PART_ContentPanel">
-                            <ContentPresenter Name="PART_ContentPresenter"
-                                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                                              Content="{TemplateBinding Content}"
-                                              Margin="{TemplateBinding Padding}"
-                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        </Panel>
+                        <Border Name="PART_TopLevelChrome">
+                            <Panel Name="PART_ContentPanel"
+                                   Background="{TemplateBinding Background}">
+                                <ContentPresenter Name="PART_ContentPresenter"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                  Content="{TemplateBinding Content}"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Panel>
+                        </Border>
                     </VisualLayerManager>
                 </Panel>
             </ControlTemplate>
@@ -52,7 +61,32 @@
         <Setter Property="Height" Value="24"/>
     </Style>
     
-    <Style Selector="Window.windows-platform-fix[WindowState=Maximized] /template/ Panel#PART_VisualRootPanel">
+    <!-- ExtendClientAreaChromeHints="NoChrome" will make window without drop-shadow -->
+    <!-- this style chains will add a drop-shadow in app view spot -->
+    <!--
+    <Style Selector="Window[WindowState=Normal], Window[WindowState=Maximized]">
+        <Style Selector="^ /template/ Border#PART_TopLevelChrome">
+            <Setter Property="Margin" Value="8"/>
+            <Setter Property="BoxShadow" Value="0 1 8 4 #50020202"/>
+        </Style>
+        
+        <Style Selector="^ /template/ Panel#PART_ContentPanel">
+            <Setter Property="Margin" Value="8"/>
+        </Style>
+    </Style>-->
+    
+    <!-- WindowsOS: window wraps padding from OS window manager while window was maximised and the system decorations was Full-->
+    <!-- this style will apply another 8dp margin to correct it. -->
+    <!-- To use this fix, apply classes to your window: 'windows-platform-fix' -->
+    <!-- conflicts: app-chrome shadow -->
+    <Style Selector="Window.windows-platform-fix[WindowState=Maximized][SystemDecorations=Full] /template/ Panel#PART_VisualRootPanel">
         <Setter Property="Margin" Value="8"/>
     </Style>
+    
+    <!-- if user decides use full system decorations, the title bar buttons should be invisible and inaccessible-->
+    <!-- since OS window standard buttons will have higher priority than in-app window buttons -->
+    <!--
+    <Style Selector="Window[SystemDecorations=Full][ExtendClientAreaChromeHints=SystemChrome] /template/ chrome|MaterialTitleBar#PART_TitleBar /template/ chrome|MaterialTitleBarButtons#PART_CaptionButtons">
+        <Setter Property="IsVisible" Value="False"/>
+    </Style>-->
 </Styles>

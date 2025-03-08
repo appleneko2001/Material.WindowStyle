@@ -11,9 +11,6 @@
         
         Classes="windows-platform-fix"
         
-        SystemDecorations="Full"
-        ExtendClientAreaToDecorationsHint="True"
-        
         x:DataType="viewModels:DemoWindowViewModel">
     
     <!-- ReSharper disable Xaml.RedundantCollectionProperty -->
