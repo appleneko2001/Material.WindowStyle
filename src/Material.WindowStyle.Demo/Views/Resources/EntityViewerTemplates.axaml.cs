@@ -1,5 +1,4 @@
-﻿using Avalonia;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Input;
 using Material.WindowStyle.Demo.Views.ViewModels.Entities;
 
@@ -25,7 +24,7 @@ namespace Material.WindowStyle.Demo.Views.Resources
 
         private void MonospacedTextElement_OnPointerPressed(object? sender, PointerPressedEventArgs e)
         {
-            if (sender is not IControl control)
+            if (sender is not Control control)
                 return;
 
             if (control.DataContext is not MonospaceTextEntityViewModel vm)
@@ -36,7 +35,7 @@ namespace Material.WindowStyle.Demo.Views.Resources
 
         private void MonospacedTextElement_OnPointerReleased(object? sender, PointerReleasedEventArgs e)
         {
-            if (sender is not IControl control)
+            if (sender is not Control control)
                 return;
 
             if (control.DataContext is not MonospaceTextEntityViewModel vm)
@@ -46,7 +45,8 @@ namespace Material.WindowStyle.Demo.Views.Resources
                 return;
             
             vm.IsPointerPressed = false;
-            Application.Current?
+            
+            TopLevel.GetTopLevel(control)?
                 .Clipboard?
                 .SetTextAsync(vm.Text ?? string.Empty)
                 .ContinueWith(delegate(Task task)
@@ -61,7 +61,7 @@ namespace Material.WindowStyle.Demo.Views.Resources
 
         private void OnPointerExitedMonospaceTextZoneAfterClick(object? sender, PointerEventArgs e)
         {
-            if (sender is not IControl control)
+            if (sender is not Control control)
                 return;
 
             control.PointerExited -= OnPointerExitedMonospaceTextZoneAfterClick;

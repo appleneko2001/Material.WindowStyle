@@ -61,7 +61,7 @@
                            TextWrapping="Wrap"
                            TextTrimming="CharacterEllipsis"/>
                 <TextBlock Classes="Headline6" Margin="0,16,0,0" Text="Requirements:"/>
-                <ItemsRepeater Margin="8" Items="{CompiledBinding Requirements}"
+                <ItemsRepeater Margin="8" ItemsSource="{CompiledBinding Requirements}"
                                ItemTemplate="{StaticResource {x:Static strings:KeyNames.EntityElementTemplate}}">
                     <ItemsRepeater.Layout>
                         <StackLayout Spacing="8"/>
@@ -69,7 +69,7 @@
                 </ItemsRepeater>
                 
                 <TextBlock Classes="Headline6" Margin="0,16,0,0" Text="Optional supported libs:"/>
-                <ItemsRepeater Margin="8" Items="{CompiledBinding OptionalSupportedLibs}"
+                <ItemsRepeater Margin="8" ItemsSource="{CompiledBinding OptionalSupportedLibs}"
                                ItemTemplate="{StaticResource {x:Static strings:KeyNames.EntityElementTemplate}}">
                     <ItemsRepeater.Layout>
                         <StackLayout Spacing="8"/>
@@ -79,7 +79,7 @@
         
             <StackPanel Margin="0, 8">
                 <TextBlock Classes="Headline6" Margin="0,16,0,0" Text="Steps:"/>
-                <ItemsRepeater Margin="8" Items="{CompiledBinding Steps}"
+                <ItemsRepeater Margin="8" ItemsSource="{CompiledBinding Steps}"
                                ItemTemplate="{StaticResource {x:Static strings:KeyNames.EntityElementTemplate}}">
                     <ItemsRepeater.Layout>
                         <StackLayout Spacing="8"/>

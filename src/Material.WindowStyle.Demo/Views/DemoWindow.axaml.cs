@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using System.ComponentModel;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
@@ -9,7 +10,7 @@ using Material.WindowStyle.Demo.Interop;
 
 namespace Material.WindowStyle.Demo.Views
 {
-    public class DemoWindow : Window
+    public partial class DemoWindow : Window
     {
         public DemoWindow()
         {
@@ -55,15 +56,24 @@ namespace Material.WindowStyle.Demo.Views
         // Show system menu on context menu requested by main appbar
         private void Handler(object? sender, ContextRequestedEventArgs e)
         {
-            var handle = PlatformImpl.Handle.Handle;
-        
+            var handle = TryGetPlatformHandle();
+
+            if (handle == null)
+            {
+                Console.WriteLine("Feature is not supported");
+                return;
+            }
             // Works on windows platform only.
             // Also it requires window should have full system decorations (SystemDecorations="Full")
             // otherwise the GetSystemMenu method will always return null pointer.
         
             // You can hide border by ExtendClientAreaToDecorationsHint="True".
             // credit: https://stackoverflow.com/questions/15129218/show-system-menu-from-another-process-using-winforms-c
-            ShowContextMenu(handle, handle);
+            
+            // TODO: not working when SystemDecoration != Full
+            // prob smth related with context menu of app title bar disabled and it cannot be popup
+            ShowContextMenu(handle.Handle, handle.Handle);
+            e.Handled = true;
         }
 
         private static void ShowContextMenu(IntPtr appWindow, IntPtr myWindow)
@@ -71,6 +81,8 @@ namespace Material.WindowStyle.Demo.Views
             WinApiMethods.GetCursorPos(out var point);
         
             var wMenu = WinApiMethods.GetSystemMenu(appWindow, false);
+            if(wMenu == IntPtr.Zero)
+                Console.WriteLine($"Unable to get window toplevel menu: {new Win32Exception()}");
             // Display the menu
             var command = WinApiMethods.TrackPopupMenuEx(wMenu, 0x0100, point.X, point.Y, myWindow, IntPtr.Zero);
 

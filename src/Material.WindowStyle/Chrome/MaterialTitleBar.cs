@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Reactive.Disposables;
+using System.Collections.Generic;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Chrome;
@@ -7,6 +7,7 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Platform;
+using Avalonia.Reactive;
 
 namespace Material.WindowStyle.Chrome
 {
@@ -14,8 +15,8 @@ namespace Material.WindowStyle.Chrome
         ":right-aligned-buttons")]
     public class MaterialTitleBar : TemplatedControl
     {
-        private CompositeDisposable? _disposables;
         private MaterialTitleBarButtons? _captionButtons;
+        private IReadOnlyList<IDisposable>? _disposablesList;
         private Border? _dragZone;
         private DateTime _prevClickDragZone;
 
@@ -45,7 +46,7 @@ namespace Material.WindowStyle.Chrome
                 
                 var result = fullDecor && window.ExtendClientAreaChromeHints == ExtendClientAreaChromeHints.NoChrome;
                 result = result && window.ExtendClientAreaChromeHints == ExtendClientAreaChromeHints.PreferSystemChrome;
-                result = result && (window.PlatformImpl?.NeedsManagedDecorations ?? false);
+                //result = result && (window.PlatformImpl?.NeedsManagedDecorations ?? false);
 
                 IsVisible = !result;
             }
@@ -86,34 +87,35 @@ namespace Material.WindowStyle.Chrome
             if (VisualRoot is not Window window)
                 return;
 
-            _disposables = new CompositeDisposable
+            _disposablesList = new []
             {
                 window.GetObservable(Window.WindowDecorationMarginProperty)
-                    .Subscribe(delegate { UpdateState(window); }),
+                    .Subscribe(new AnonymousObserver<Thickness>(_ => UpdateState(window))),
                 window.GetObservable(Window.ExtendClientAreaTitleBarHeightHintProperty)
-                    .Subscribe(delegate { UpdateState(window); }),
+                    .Subscribe(new AnonymousObserver<double>(_ => UpdateState(window))),
                 window.GetObservable(Window.OffScreenMarginProperty)
-                    .Subscribe(delegate { UpdateState(window); }),
+                    .Subscribe(new AnonymousObserver<Thickness>(_ => UpdateState(window))),
                 window.GetObservable(Window.ExtendClientAreaChromeHintsProperty)
-                    .Subscribe(delegate { UpdateState(window); }),
+                    .Subscribe(new AnonymousObserver<ExtendClientAreaChromeHints>(_ => UpdateState(window))),
                 window.GetObservable(Window.WindowStateProperty)
-                    .Subscribe(delegate(WindowState x)
+                    .Subscribe(new AnonymousObserver<WindowState>(delegate(WindowState x)
                     {
                         PseudoClasses.Set(":minimized", x == WindowState.Minimized);
                         PseudoClasses.Set(":normal", x == WindowState.Normal);
                         PseudoClasses.Set(":maximized", x == WindowState.Maximized);
                         PseudoClasses.Set(":fullscreen", x == WindowState.FullScreen);
-                    }),
+                    })),
                 window.GetObservable(Window.IsExtendedIntoWindowDecorationsProperty)
-                    .Subscribe(delegate { UpdateState(window); }),
-                window.GetObservable(Window.TitleProperty).Subscribe(delegate(string? s) { Title = s; }),
+                    .Subscribe(new AnonymousObserver<bool>(_ => UpdateState(window))),
+                window.GetObservable(Window.TitleProperty)
+                    .Subscribe(new AnonymousObserver<string?>(s => Title = s)),
 
-                this.GetObservable(ButtonsAlignProperty).Subscribe(
+                this.GetObservable(ButtonsAlignProperty).Subscribe(new AnonymousObserver<TitleButtonAlignment>(
                     delegate(TitleButtonAlignment alignment)
                     {
                         PseudoClasses.Set(":left-aligned-buttons", alignment == TitleButtonAlignment.Left);
                         PseudoClasses.Set(":right-aligned-buttons", alignment == TitleButtonAlignment.Right);
-                    })
+                    }))
             };
         }
 
@@ -157,7 +159,9 @@ namespace Material.WindowStyle.Chrome
 
             base.OnDetachedFromVisualTree(e);
 
-            _disposables?.Dispose();
+            if (_disposablesList != null)
+                foreach (var disposable in _disposablesList)
+                    disposable.Dispose();
 
             _captionButtons?.Detach();
             _captionButtons = null;

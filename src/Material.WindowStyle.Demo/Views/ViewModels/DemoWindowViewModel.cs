@@ -86,14 +86,14 @@ namespace Material.WindowStyle.Demo.Views.ViewModels
                 if (!value.ToLower().StartsWith("avares://"))
                     return;
 
-                var service = AvaloniaLocator.Current.GetService(typeof(IAssetLoader));
+                /*var service = AvaloniaLocator.Current.GetService(typeof(IAssetLoader));
                 if (service is not IAssetLoader assetLoader)
                     return;
             
                 using (var stream = assetLoader.Open(new Uri(value)))
                 {
                 
-                }
+                }*/
             }
         }
     }

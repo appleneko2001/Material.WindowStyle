@@ -53,7 +53,7 @@
             <DataTemplate DataType="entities:BulletItemEntityViewModel" x:Key="BulletItem">
                 <DockPanel>
                     <Ellipse Name="PART_Bullet"/>
-                    <ItemsControl Items="{CompiledBinding Entities}"
+                    <ItemsControl ItemsSource="{CompiledBinding Entities}"
                                   ItemTemplate="{StaticResource {x:Static strings:KeyNames.EntityElementTemplate}}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -64,7 +64,7 @@
                 </DockPanel>
             </DataTemplate>
             <DataTemplate DataType="entities:CombinedEntityViewModel" x:Key="Combination">
-                <ItemsControl Items="{CompiledBinding Entities}"
+                <ItemsControl ItemsSource="{CompiledBinding Entities}"
                               ItemTemplate="{StaticResource {x:Static strings:KeyNames.EntityElementTemplate}}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>

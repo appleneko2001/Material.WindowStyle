@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Reactive.Disposables;
+using System.Collections.Generic;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
+using Avalonia.Reactive;
 
 namespace Material.WindowStyle.Chrome
 {
@@ -25,42 +26,45 @@ namespace Material.WindowStyle.Chrome
             set => SetValue(IsReversedProperty, value);
         }
 
-        private CompositeDisposable? _disposables;
+        private List<IDisposable>? _disposablesList;
         private Window? _hostWindow;
 
         public void Attach(Window hostWindow)
         {
-            if (_disposables != null)
-            {
-                if (!_disposables.IsDisposed)
-                    _disposables.Dispose();
-
-                _disposables = null;
-            }
+            DisposeObservables();
 
             _hostWindow = hostWindow;
 
-            _disposables = new CompositeDisposable
+            _disposablesList = new List<IDisposable>
             {
                 _hostWindow.GetObservable(Window.WindowStateProperty)
-                    .Subscribe(x =>
+                    .Subscribe(new AnonymousObserver<WindowState>(x =>
                     {
                         PseudoClasses.Set(":minimized", x == WindowState.Minimized);
                         PseudoClasses.Set(":normal", x == WindowState.Normal);
                         PseudoClasses.Set(":maximized", x == WindowState.Maximized);
                         PseudoClasses.Set(":fullscreen", x == WindowState.FullScreen);
-                    })
+                    }))
             };
+        }
+
+        private void DisposeObservables()
+        {
+            var list = _disposablesList;
+            
+            if (list == null)
+                return;
+            
+            foreach (var disposable in list)
+                disposable.Dispose();
+
+            list.Clear();
+            _disposablesList = null;
         }
 
         public void Detach()
         {
-            if (_disposables == null)
-                return;
-
-            _disposables.Dispose();
-            _disposables = null;
-
+            DisposeObservables();
             _hostWindow = null;
         }
 
@@ -90,25 +94,25 @@ namespace Material.WindowStyle.Chrome
                     case PartNameCloseButton:
                     {
                         var d = b.AddDisposableHandler(Button.ClickEvent, OnCloseButtonClicked);
-                        _disposables?.Add(d);
+                        _disposablesList?.Add(d);
                     } break;
                     
                     case PartNameRestoreButton:
                     {
                         var d = b.AddDisposableHandler(Button.ClickEvent, OnRestoreButtonClicked);
-                        _disposables?.Add(d);
+                        _disposablesList?.Add(d);
                     } break;
                     
                     case PartNameMinimizeButton:
                     {
                         var d = b.AddDisposableHandler(Button.ClickEvent, OnMinimiseButtonClicked);
-                        _disposables?.Add(d);
+                        _disposablesList?.Add(d);
                     } break;
                     
                     case PartNameFullscreenButton:
                     {
                         var d = b.AddDisposableHandler(Button.ClickEvent, OnFullScreenButtonClicked);
-                        _disposables?.Add(d);
+                        _disposablesList?.Add(d);
                     } break;
                 }
             }
