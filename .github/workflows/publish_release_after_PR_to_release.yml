@@ -17,6 +17,8 @@ jobs:
       run: dotnet restore ./src/Material.WindowStyle
     - name: Build
       run: dotnet build --no-restore --configuration Release ./src/Material.WindowStyle/Material.WindowStyle.csproj
+    - name: copy readme to ./src/Material.WindowStyle
+      run: cp ./README.md ./src/Material.WindowStyle/README.md
     - name: Pack
       run: dotnet pack --configuration Release ./src/Material.WindowStyle/Material.WindowStyle.csproj
     - name: Move package to artifacts
