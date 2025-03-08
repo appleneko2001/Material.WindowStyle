@@ -49,9 +49,8 @@
     </Style>
     
     <!-- Default behaviour of buttons -->
-    
-    <Style Selector="chrome|MaterialTitleBarButtons /template/ TemplatedControl.button /template/ Border#PART_HoverBorder">
-        <Setter Property="Opacity" Value="0"/>
+    <Style Selector="chrome|MaterialTitleBarButtons /template/ TemplatedControl.button /template/ Button#PART_Button">
+        <Setter Property="Focusable" Value="False"/>
     </Style>
     
     <Style Selector="chrome|MaterialTitleBarButtons /template/ TemplatedControl.button /template/ Path#PART_IconPath">
