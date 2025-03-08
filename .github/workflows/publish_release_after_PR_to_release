@@ -1,0 +1,27 @@
+name: Build and publish release package after PR to release
+
+on:
+  push:
+    branches: [ release ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore ./src/Material.WindowStyle
+    - name: Build
+      run: dotnet build --no-restore --configuration Release ./src/Material.WindowStyle/Material.WindowStyle.csproj
+    - name: Pack
+      run: dotnet pack --configuration Release ./src/Material.WindowStyle/Material.WindowStyle.csproj
+    - name: Move package to artifacts
+      run: |
+        mkdir artifacts
+        find . -name \*.nupkg -exec mv {} artifacts/ \;
+    - name: Publish to NuGet
+      run: dotnet nuget push "artifacts/Material.WindowStyle.*.nupkg" --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
