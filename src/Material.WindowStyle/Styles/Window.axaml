@@ -7,7 +7,6 @@
         
         <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-        <Setter Property="TextBlock.Foreground" Value="{DynamicResource MaterialDesignBody}"/>
         <Setter Property="Template">
             <ControlTemplate>
                 <Panel Name="PART_VisualRootPanel">
