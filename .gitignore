@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# ignore local copy of readme its used for nuget pack and publish in github action
+src/Material.WindowStyle/README.md
+
 # User-specific files
 *.rsuser
 *.suo
