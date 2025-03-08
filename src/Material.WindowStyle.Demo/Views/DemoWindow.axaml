@@ -43,7 +43,7 @@
         </ResourceDictionary>
     </Window.Resources>
     <Window.DataContext>
-        <viewModels:DemoWindowViewModel Source="avares://Material.WindowStyle.Demo/readme.txt"/>
+        <viewModels:DemoWindowViewModel Source="avares://Material.WindowStyle.Demo/readme.md"/>
     </Window.DataContext>
     
     <ScrollViewer HorizontalContentAlignment="Center">

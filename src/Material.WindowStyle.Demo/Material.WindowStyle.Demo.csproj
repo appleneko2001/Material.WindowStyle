@@ -22,7 +22,7 @@
     </ItemGroup>
     
     <ItemGroup>
-      <AvaloniaResource Include="readme.txt" />
+      <None Include="readme.md" />
     </ItemGroup>
 
 </Project>
