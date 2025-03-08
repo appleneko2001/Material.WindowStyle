@@ -4,6 +4,7 @@
     <Styles.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="avares://Material.WindowStyle/Resources/ControlTheme.axaml"/>
                 <ResourceInclude Source="avares://Material.WindowStyle/Resources/Icons/TitleBarButtonIcons.axaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -37,7 +38,7 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <Button Name="PART_Button"
-                        Classes="material-title-bar-button">
+                        Theme="{StaticResource MaterialTitleBarButton}">
                     <Viewbox Name="PART_IconView">
                         <Path Name="PART_IconPath"
                               Fill="{TemplateBinding Foreground}"/>

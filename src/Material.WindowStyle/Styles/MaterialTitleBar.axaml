@@ -29,13 +29,10 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}">
                         <DockPanel Name="PART_DockContainer">
+                            <!-- Styled button for window has moved to Resources/ControlTheme.axaml
+                                 the entry reference is in ./MaterialTitleBarButtons.axaml Line 41 -->
                             <chrome:MaterialTitleBarButtons Name="PART_CaptionButtons"
-                                                            VerticalAlignment="Top"
-                                                            Foreground="{TemplateBinding Foreground}">
-                                <chrome:MaterialTitleBarButtons.Styles>
-                                    <StyleInclude Source="avares://Material.WindowStyle/Styles/Button.axaml"/>
-                                </chrome:MaterialTitleBarButtons.Styles>
-                            </chrome:MaterialTitleBarButtons>
+                                                            Foreground="{TemplateBinding Foreground}"/>
                             
                             <Panel Name="PART_TitleContainer">
                                 <TextBlock Text="{TemplateBinding Title}"
