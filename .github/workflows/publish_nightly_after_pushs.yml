@@ -15,6 +15,9 @@ jobs:
         dotnet-version: 6.0.x
     - name: Restore dependencies
       run: dotnet restore ./src/Material.WindowStyle
+# ~~i have no idea its not working and im gonna comment it out~~
+# ITS CALLED MSBUILD MOMENT 
+# TRUE SAVIOUR https://github.com/NuGet/Home/issues/11292#issuecomment-1317357876
     - name: copy readme to ./src/Material.WindowStyle
       run: cp ./README.md ./src/Material.WindowStyle/README.md
     - name: Build

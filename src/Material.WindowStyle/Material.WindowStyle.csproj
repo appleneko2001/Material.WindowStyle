@@ -25,11 +25,8 @@
       <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     </PropertyGroup>
     
-    <!--require something tricky to make it work, like for example, copy a README file to the project folder after
-        every git clone in github action workflow-->
-    <ItemGroup>
-        <None Include="README.md"/>
-    </ItemGroup>
+    <!--require something tricky and dirty way to make it work
+    CREDIT: https://github.com/NuGet/Home/issues/11292#issuecomment-1317357876-->
     
     <PropertyGroup>
         <PackageReadmeFile>README.md</PackageReadmeFile>
