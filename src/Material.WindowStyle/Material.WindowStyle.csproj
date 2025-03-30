@@ -27,6 +27,12 @@
     
     <!--require something tricky and dirty way to make it work
     CREDIT: https://github.com/NuGet/Home/issues/11292#issuecomment-1317357876-->
+    <ItemGroup>
+        <None Include="README.md">
+          <Pack>True</Pack>
+          <PackagePath>\</PackagePath>
+        </None>
+    </ItemGroup>
     
     <PropertyGroup>
         <PackageReadmeFile>README.md</PackageReadmeFile>
