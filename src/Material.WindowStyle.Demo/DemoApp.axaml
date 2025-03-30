@@ -4,10 +4,20 @@
              xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
 
              x:Class="Material.WindowStyle.Demo.DemoApp">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="avares://Material.WindowStyle/Resources/ControlTheme.axaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+    
     <Application.Styles>
         <!--StyleInclude Source="avares://Material.Avalonia/Material.Avalonia.Templates.xaml" /-->
         <themes:MaterialTheme PrimaryColor="Blue" SecondaryColor="Red" />
-        <StyleInclude Source="avares://Material.WindowStyle/WindowStyleInclude.axaml"/>
+        
+        <!--Old way to use this library which literally targeting all window-->
+        <!-- <StyleInclude Source="avares://Material.WindowStyle/WindowStyleInclude.axaml"/> -->
         
         <Style Selector="Ellipse#PART_Bullet">
             <Setter Property="Width" Value="4"/>

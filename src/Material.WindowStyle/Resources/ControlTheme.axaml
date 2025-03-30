@@ -49,6 +49,138 @@
         </Style>
     </ControlTheme>
     
+        <!-- Title bar buttons -->
+    <ControlTheme x:Key="MaterialTitleBarButtonSet"
+                  TargetType="chrome:MaterialTitleBarButtons">
+        <Setter Property="Height" Value="{TemplateBinding Height}"/>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <ReversibleStackPanel Name="PART_ButtonsPanel"
+                                      Orientation="Horizontal"
+                                      VerticalAlignment="Stretch"
+                                      ReverseOrder="{TemplateBinding IsReversed}">
+                    <TemplatedControl Name="PART_CustomElements"/>
+                    
+                    <TemplatedControl Name="PART_FullScreenButton" Classes="button"
+                                      ToolTip.Tip="Fullscreen / Exit fullscreen mode"/>
+                    <TemplatedControl Name="PART_MinimizeButton" Classes="button"
+                                      ToolTip.Tip="Minimize window"/>
+                    <TemplatedControl Name="PART_RestoreButton" Classes="button"
+                                      ToolTip.Tip="Maximize / restore window"/>
+                    <TemplatedControl Name="PART_CloseButton" Classes="button"
+                                      ToolTip.Tip="Close window"/>
+                </ReversibleStackPanel>
+            </ControlTemplate>
+        </Setter>
+    
+        <Style Selector="^ /template/ TemplatedControl.button">
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Button Name="PART_Button"
+                            Theme="{StaticResource MaterialTitleBarButton}">
+                        <Viewbox Name="PART_IconView">
+                            <Path Name="PART_IconPath"
+                                  Fill="{TemplateBinding Foreground}"/>
+                        </Viewbox>
+                    </Button>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+    </ControlTheme>
+    
+    <ControlTheme x:Key="MaterialTitleBarTheme"
+                  TargetType="chrome:MaterialTitleBar">
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
+        
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="ClipToBounds" Value="False"/>
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="ButtonsAlign" Value="Right"/>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel HorizontalAlignment="{TemplateBinding HorizontalAlignment}" 
+                       VerticalAlignment="Stretch">
+                    
+                    <!-- The title bar will shown when cursor trigger upper zone (below one) -->
+                    <Panel Name="PART_FullScreenMouseTracker"
+                           Background="Transparent"
+                           VerticalAlignment="Top"
+                           Height="1"/>
+                    
+                    <!-- Inner title bar content -->
+                    
+                    <Border Name="PART_AppTitleBorder"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}">
+                        <DockPanel Name="PART_DockContainer">
+                            <!-- Styled button for window has moved to Resources/ControlTheme.axaml
+                                 the entry reference is in ./MaterialTitleBarButtons.axaml Line 41 -->
+                            <chrome:MaterialTitleBarButtons Name="PART_CaptionButtons"
+                                                            Foreground="{TemplateBinding Foreground}">
+                                <chrome:MaterialTitleBarButtons.Styles>
+                                    <!-- Since ControlTheme allows only one /template/, using this thing to reference style to setup buttons icons and events -->
+                                    <StyleInclude Source="avares://Material.WindowStyle/Styles/MaterialTitleBarButtons.axaml"/>
+                                </chrome:MaterialTitleBarButtons.Styles>
+                            </chrome:MaterialTitleBarButtons>
+                            
+                            <Panel Name="PART_TitleContainer">
+                                <TextBlock Text="{TemplateBinding Title}"
+                                           VerticalAlignment="Center"
+                                           Margin="8,0"/>
+                                <Border Name="PART_WindowDragZone"
+                                        Background="Transparent"/>
+                            </Panel>
+                        </DockPanel>
+                    </Border>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    
+        <Style Selector="^:not(.no-transitions) /template/ Border#PART_AppTitleBorder">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0.25" Easing="CircularEaseOut" />
+                </Transitions>
+            </Setter>
+        </Style>
+        
+        <Style Selector="^ /template/ DockPanel#PART_DockContainer > chrome|MaterialTitleBarButtons#PART_CaptionButtons">
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Theme" Value="{StaticResource MaterialTitleBarButtonSet}"/>
+        </Style>
+        
+        <Style Selector="^:right-aligned-buttons /template/ 
+                         DockPanel#PART_DockContainer > chrome|MaterialTitleBarButtons#PART_CaptionButtons,
+                         ^:right-aligned-buttons /template/
+                         DockPanel#PART_DockContainer > Panel#PART_TitleContainer">
+            <Setter Property="DockPanel.Dock" Value="Right"/>
+        </Style>
+        
+        <Style Selector="^:left-aligned-buttons /template/ 
+                         DockPanel#PART_DockContainer > chrome|MaterialTitleBarButtons#PART_CaptionButtons,
+                         ^:left-aligned-buttons /template/
+                         DockPanel#PART_DockContainer > Panel#PART_TitleContainer">
+            <Setter Property="DockPanel.Dock" Value="Left"/>
+        </Style>
+        
+        <Style Selector="^:left-aligned-buttons /template/ 
+                         DockPanel#PART_DockContainer > chrome|MaterialTitleBarButtons#PART_CaptionButtons">
+            <Setter Property="IsReversed" Value="True"/>
+        </Style>
+        
+        <Style Selector="^:fullscreen /template/ Border#PART_AppTitleBorder">
+            <Setter Property="RenderTransform" Value="translateY(-32px)" />
+        </Style>
+        
+        <Style Selector="^:fullscreen:pointerover /template/ Border#PART_AppTitleBorder">
+            <Setter Property="RenderTransform" Value="none" />
+        </Style>
+    </ControlTheme>
+    
+    <!-- Window theme -->
     <ControlTheme x:Key="MaterialWindowTheme"
                   TargetType="Window">
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -69,7 +201,8 @@
                     <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
                     <VisualLayerManager>
                         <VisualLayerManager.ChromeOverlayLayer>
-                            <chrome:MaterialTitleBar Name="PART_TitleBar"/>
+                            <chrome:MaterialTitleBar Name="PART_TitleBar"
+                                                     Theme="{StaticResource MaterialTitleBarTheme}"/>
                         </VisualLayerManager.ChromeOverlayLayer>
                         <Border Name="PART_TopLevelChrome">
                             <Panel Name="PART_ContentPanel"
@@ -86,6 +219,10 @@
                 </Panel>
             </ControlTemplate>
         </Setter>
+        
+        <Style Selector="^ /template/ chrome|MaterialTitleBar#PART_TitleBar">
+            <Setter Property="Theme" Value="{StaticResource MaterialTitleBarTheme}"/>
+        </Style>
         
         <Style Selector="^ /template/ Panel#PART_ContentPanel">
             <Setter Property="Margin" Value="0,32,0,0"/>

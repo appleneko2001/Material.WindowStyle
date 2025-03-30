@@ -11,7 +11,8 @@
         
         Classes="windows-platform-fix"
         
-        x:DataType="viewModels:DemoWindowViewModel">
+        x:DataType="viewModels:DemoWindowViewModel"
+        Theme="{StaticResource MaterialWindowTheme}">
     
     <!-- ReSharper disable Xaml.RedundantCollectionProperty -->
     <Window.Styles>
