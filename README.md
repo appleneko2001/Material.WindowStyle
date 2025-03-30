@@ -34,6 +34,13 @@ Add this style to your application xaml
     <Setter Property="Foreground" Value="White"/>
 </Style>
 ```
+alternative way (static resource):
+```xml
+<Application.Resources>
+    <SolidColorBrush x:Key="MaterialDesignPaper">#4C4C4C</SolidColorBrush>
+    <SolidColorBrush x:Key="MaterialDesignBody">White</SolidColorBrush>
+</Application.Resources>
+```
 
 This will set material title bar colours to all windows by default. Background will be gray, and the foreground will be white. And also, it will make this library works without Material.Avalonia.
 
